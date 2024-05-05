@@ -15,7 +15,7 @@ VoTT を起動すると以下のような画面が表示されるので、[New P
 - ターゲット接続 (下記を参照)
 - 説明: なし
 - フレーム抽出率: 30
-- タグ: blue, red, purple
+- タグ: blue, red, purple (Enterで確定)
 - セキュリティ トークン: Generate New Security Token
 
 ### ソース接続(対象の動画を入れたフォルダを用意してね)
