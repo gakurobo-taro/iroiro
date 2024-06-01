@@ -1,0 +1,1 @@
+gnome-terminal --window --maximize -- bash launch_node.bash
