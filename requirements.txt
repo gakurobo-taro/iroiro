@@ -1,0 +1,5 @@
+python-can
+pyserial
+customtkinter
+tkinter
+setuptools==58.2.0

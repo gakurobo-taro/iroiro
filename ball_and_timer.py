@@ -15,6 +15,7 @@ class BallGUI(tk.Frame):
         self.master.bind("<space>", self.start_stop_timer)
         self.master.bind("<Return>", self.record_lap_time)
         self.master.bind("<g>", self.regenerate_balls)
+        self.master.bind("<c>", self.countdown)
 
     def create_widgets(self):
         # ボール表示用のキャンバス
@@ -34,6 +35,9 @@ class BallGUI(tk.Frame):
         self.rap_button.grid(row=2, column=0, padx=10, pady=10, sticky="ew")
         self.generate_button = tk.Button(button_frame, text="GENERATE", command=self.regenerate_balls, font=("Helvetica", int(self.base_font_size * 0.8)))
         self.generate_button.grid(row=3, column=0, padx=10, pady=10, sticky="ew")
+
+        self.countdown_button = tk.Button(button_frame, text="COUNTDOWN", command=self.countdown, font=("Helvetica", int(self.base_font_size * 0.8)))
+        self.countdown_button.grid(row=4, column=0, padx=10, pady=10, sticky="ew")
 
         # タイマー表示用のフレーム
         timer_frame = tk.Frame(self)
@@ -140,6 +144,16 @@ class BallGUI(tk.Frame):
             current_time = self.timer_label['text']
             self.rap_listbox.insert(0, current_time)
 
+    def countdown(self, event=None):
+        self.timer_label.config(text=str("READY"))
+        self.update_idletasks()
+        time.sleep(2)
+        for i in range(3, 0, -1):
+            self.timer_label.config(text=str(i))
+            self.update_idletasks()
+            time.sleep(1)
+        self.start_timer()
+
     def on_resize(self, event):
         new_font_size = max(int(self.base_font_size * event.width / 1000), 10)
         self.timer_label.config(font=("Helvetica", int(new_font_size * 3)))
@@ -149,6 +163,7 @@ class BallGUI(tk.Frame):
         self.rap_button.config(font=("Helvetica", button_font_size))
         self.generate_button.config(font=("Helvetica", button_font_size))
         self.rap_listbox.config(font=("Helvetica", int(button_font_size * 0.75)))
+        self.countdown_button.config(font=("Helvetica", button_font_size))
 
         # キャンバスのサイズを調整
         self.ball_canvas.config(width=event.width * 0.5, height=event.height * 0.1)
